@@ -1004,4 +1004,14 @@ a:focus {
 .footer_section .footer-info p a {
   color: inherit;
 }
+.btn-add {
+  background-color: orange;
+  border-radius: 15px; 
+  font-weight: bold; 
+  color: white;
+}
+
+
+
+
 /*# sourceMappingURL=style.css.map */
