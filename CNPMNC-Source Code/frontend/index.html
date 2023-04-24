@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo.png" type="">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Fast-Food | Home</title>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/css/splide-core.min.css" />
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link ml-3" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-3" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-3" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-3" href="about.html">Contact Us</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ">
+                    <li id="account_show" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Username
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">My account</a>
+                            <a class="dropdown-item" href="#">Cart</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Exit</a>
+                        </div>
+                    </li>
+                    <li class="nav-item mr-3 dropdown">
+                        <a id="icon-user" class="nav-link ml-3 dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a id="sign-in-navmenu" class="dropdown-item" href="#">Sign in</a>
+                            <a id="sign-up-navmenu" class="dropdown-item" href="#">Sign up</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Modal Sign in-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+              <div class="form-title text-center">
+                <h4>Login</h4>
+              </div>
+              <div class="d-flex flex-column text-center">
+                <form>
+                  <div class="form-group">
+                    <input type="email" class="form-control" id="username-sign-in"placeholder="Your username...">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="password-sign-in" placeholder="Your password...">
+                  </div>
+                  <button id="button-submit-sign-in" type="button" class="btn btn-info btn-block btn-round">Login</button>
+                </form>
+                
+                <div class="text-center text-muted delimiter">or use a social network</div>
+                <div class="d-flex justify-content-center social-buttons">
+                  <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
+                    <i class="fab fa-linkedin"></i>
+                  </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <div class="signup-section">Not a member yet? <a href="#" id="sign-up-link-modal" class="text-info"> Sign Up</a>.</div>
+        </div>
+        </div>
+        </div>
+    </div>
+    <!--Modal Sign up-->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+              <div class="form-title text-center">
+                <h4>Sign up</h4>
+              </div>
+              <div class="d-flex flex-column text-center">
+                <form>
+                  <div class="form-group">
+                    <input type="email" class="form-control" id="username-sign-up"placeholder="username...">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" id="email-sign-up"placeholder="email...">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="password-sign-up" placeholder="password...">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="re-password-sign-up" placeholder="re-enter password...">
+                  </div>
+                  <button id="button-submit-sign-up" type="button" class="btn btn-info btn-block btn-round">Sign up</button>
+                </form>
+                
+                <div class="text-center text-muted delimiter">or use a social network</div>
+                <div class="d-flex justify-content-center social-buttons">
+                  <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
+                    <i class="fab fa-linkedin"></i>
+                  </button>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Contetn-->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-3 " >
+                <div class="dropdown">
+                    <button class="dropbtn">MENU</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#about">PIZZA</a>
+                        <a href="#base">PASTA</a>
+                        <a href="#blog">CHICKEN</a>
+                        <a href="#contact">SAUSAGE</a>
+                        <a href="#custom">DRINK</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-9" id="img-content-background">
+                <div style="color: orange">THE ULTIMATE</div>
+                <h1>Big Pizza</h1>
+                <p>Only 89.000vnd</p>
+                <button id="button-order-now">ORDER NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 text-center">
+        <div class="wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <div class="carousel">
+              <img src="images/sting.jpg" alt="img" draggable="false">
+              <img src="images/coca.png"  alt="img" draggable="false">
+              <img src="images/xuc-xich.jpg" alt="img" draggable="false">
+              <img src="images/xuc-xich.jpg" alt="img" draggable="false">
+              <img src="images/ga-ran.jpg" alt="img" draggable="false">
+              <img src="images/ga-ran.jpg" alt="img" draggable="false">
+              <img src="images/pizza.jpg" alt="img" draggable="false">
+              <img src="images/pizza.jpg" alt="img" draggable="false">
+              <img src="images/mi-y.jpg" alt="img" draggable="false">
+              <img src="images/mi-y.jpg" alt="img" draggable="false">
+            </div>
+            <i id="right" class="fa-solid fa-angle-right"></i>
+        </div>
+    </div>
+
+    <div class="container mt-5 text-center">
+        <h1>Món ăn nổi bật</h1>
+        <hr>
+        <div class="row">
+            <div class="col-3">
+                <img src="images/sting.jpg" style="height: 200px; width:250px ;">
+                <span>STING 390ML</span> <br>
+                <span>20000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/coca.png" style="height: 200px;width:250px ;"><br>
+                <span>COCA 390ML</span> <br>
+                <span>20000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/xuc-xich.jpg" style="height: 200px;width:250px ;">
+                <span>SAUSAGE</span> <br>
+                <span>69000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/xuc-xich.jpg" style="height: 200px;width:250px ;">
+                <span>SAUSAGE</span> <br>
+                <span>39000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/ga-ran.jpg" style="height: 200px;width:250px ;">
+                <span>STING 390ML</span> <br>
+                <span>20000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/ga-ran.jpg" style="height: 200px;width:250px ;">
+                <span>STING 390ML</span> <br>
+                <span>20000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/mi-y.jpg" style="height: 200px;width:250px ;">
+                <span>STING 390ML</span> <br>
+                <span>20000vnd</span>
+            </div>
+            <div class="col-3">
+                <img src="images/mi-y.jpg" style="height: 200px;width:250px ;">
+                <span>STING 390ML</span> <br>
+                <span>20000vnd</span>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+<!--Bootstrap-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        const carousel = document.querySelector(".carousel"),
+        firstImg = carousel.querySelectorAll("img")[0],
+        arrowIcons = document.querySelectorAll(".wrapper i");
+        let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+        const showHideIcons = () => {
+            // showing and hiding prev/next icon according to carousel scroll left value
+            let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
+            arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+            arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+        }
+        arrowIcons.forEach(icon => {
+            icon.addEventListener("click", () => {
+                let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+                // if clicked icon is left, reduce width value from the carousel scroll left else add to it
+                carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+                setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+            });
+        });
+        const autoSlide = () => {
+            // if there is no image left to scroll then return from here
+            if(carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
+            positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
+            let firstImgWidth = firstImg.clientWidth + 14;
+            // getting difference value that needs to add or reduce from carousel left to take middle img center
+            let valDifference = firstImgWidth - positionDiff;
+            if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
+                return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+            }
+            // if user is scrolling to the left
+            carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+        }
+        const dragStart = (e) => {
+            // updatating global variables value on mouse down event
+            isDragStart = true;
+            prevPageX = e.pageX || e.touches[0].pageX;
+            prevScrollLeft = carousel.scrollLeft;
+        }
+        const dragging = (e) => {
+        // scrolling images/carousel to left according to mouse pointer
+        if(!isDragStart) return;
+        e.preventDefault();
+        isDragging = true;
+        carousel.classList.add("dragging");
+        positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+        carousel.scrollLeft = prevScrollLeft - positionDiff;
+        showHideIcons();
+    }
+        const dragStop = () => {
+            isDragStart = false;
+            carousel.classList.remove("dragging");
+            if(!isDragging) return;
+            isDragging = false;
+            autoSlide();
+        }
+        carousel.addEventListener("mousedown", dragStart);
+        carousel.addEventListener("touchstart", dragStart);
+        document.addEventListener("mousemove", dragging);
+        carousel.addEventListener("touchmove", dragging);
+        document.addEventListener("mouseup", dragStop);
+        carousel.addEventListener("touchend", dragStop);
+
+
+        //---------------------------Vùng khai báo biến toàn cục---------------------------------------//
+        var signupURL = "http://localhost:8080/api/auth/signup";
+        var loginURL = "http://localhost:8080/api/auth/signin";
+        var urlInfo = "http://localhost:8080/users/me";
+
+        //Kiểm tra token nếu có token tức người dùng đã đăng nhập
+        const token = getCookie("token");
+        
+        //Khai báo xác thực ở headers
+        var headers = {
+            Authorization: "Bearer " + token
+        };
+
+        //---------------------------Sự kiện load trang---------------------------------------//
+        $("#account_show").hide();
+
+        //--------------------------Sự kiện bấm các nút----------------------------------------//
+
+        // nút sign in navmenu
+        $("#sign-in-navmenu").on("click", function() {
+            onBtnSignInNavMenu();
+        })
+
+        // nút sign up navmenu
+        $("#sign-up-navmenu").on("click", function() {
+            onBtnSignUpNavMenu();
+        })
+
+        // nút sign up link modal
+        $("#sign-up-link-modal").on("click", function() {
+            onBtnSignUpLinkModal()
+        }) 
+
+        // nút sign up submit form modal
+        $("#button-submit-sign-up").on("click", function() {
+            onBtnSubmitFormSignUp();
+        })
+
+        // nút sign in submit form modal
+        $("#button-submit-sign-in").on("click", function() {
+            onBtnSubmitFormSignIn();
+        })
+
+        // nút dropdown menu 
+        $(".dropbtn").on("click", function() {
+            myFunction();
+        })
+        //---------------------------Hàm xử lý sự kiện---------------------------------------//
+
+        // Hàm xử lý khi bấm sign in navmenu
+        function onBtnSignInNavMenu() {
+            $("#loginModal").modal('show');
+        }
+
+        // Hàm xử lý khi bấm sign up navmenu
+        function onBtnSignUpNavMenu() {
+            $("#signupModal").modal('show');
+            
+        }
+
+        // Hàm xử lý khi bấm sign up link modal
+        function onBtnSignUpLinkModal() {
+            $("#loginModal").modal('hide');
+            $("#signupModal").modal('show');
+        }
+
+        // Hàm xử lý khi bấm nút Sign up trên modal
+        function onBtnSubmitFormSignUp() {
+            var userObj = {
+                username: "",
+                email: "",
+                password: "",
+                rePassword: ""
+            }
+            getUserInfoSignUp(userObj);
+            var isValid = validateSignUpForm(userObj);
+            if(isValid) {
+                handleFormSignUp(userObj);
+            }
+            
+        }
+
+        // Hàm xử lý khi bấm nút Login trên modal
+        function onBtnSubmitFormSignIn() {
+            var userObj = {
+                username: "",
+                password: "",
+            }
+            getUserInfoSignIn(userObj);
+            var isValid = validateSignInForm(userObj);
+            if(isValid) {
+                handleFormSignIn(userObj);
+            }
+        }
+
+        //---------------------------Hàm dùng chung---------------------------------------//
+
+
+        //Hiển thị thông tin người dùng
+        function displayUser(data) {
+            console.log(data)
+            $("#navbarDropdown").html(data.username);
+            $("#account_show").show();
+            $("#icon-user").hide();
+        };  
+        // Hàm lấy thông tin user form sign up
+        function getUserInfoSignUp(userObj) {
+            var usernameValue = $("#username-sign-up").val();
+            var emailValue = $("#email-sign-up").val();
+            var password = $("#password-sign-up").val();
+            var rePassword = $("#re-password-sign-up").val();
+
+            userObj.username = usernameValue;
+            userObj.email = emailValue;
+            userObj.password = password;
+            userObj.rePassword = rePassword;
+        }
+
+        // Hàm validate form sign up
+        function validateSignUpForm(userObj) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(userObj.username =="") {
+                alert("username is empty");
+                return false
+            }
+            if(userObj.email =="") {
+                alert("email is empty");
+                return false
+            }
+            if(!regex.test(userObj.email)) {
+                alert("email is not valid");
+                return false
+            }
+            if(userObj.password =="") {
+                alert("password is empty");
+                return false;
+            }
+            if(userObj.rePassword =="") {
+                alert("re-Password is empty");
+                return false;
+            }
+            return true;
+        }
+
+        // Hàm xử lý khi validate form sign up thành công
+        function handleFormSignUp(userObj) {
+            console.log(userObj);
+            var userObjPost = {
+                username: userObj.username,
+                email: userObj.email,
+                password: userObj.password
+            }
+            // gọi api tạo user mới
+            $.ajax({
+                url: signupURL,
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(userObjPost),
+                success: function(responseObject) {
+                    console.log(responseObject);
+                    alert("Sign Up Success");
+                    $("#signupModal").modal('hide');
+                    $("#loginModal").modal('show');
+                },
+                error: function(xhr) {
+                // Lấy error message
+                var errorMessage = xhr.responseJSON.message;
+                console.log(xhr);
+                }
+            });
+        }
+
+        // Hàm lấy thông tin user form sign in
+        function getUserInfoSignIn(userObj) {
+            var usernameValue = $("#username-sign-in").val();
+            var password = $("#password-sign-in").val();
+
+            userObj.username = usernameValue;
+            userObj.password = password;
+        }
+
+        // Hàm validate form sign in
+        function validateSignInForm(userObj) {
+            if(userObj.username =="") {
+                alert("username is empty");
+                return false
+            }
+            if(userObj.password =="") {
+                alert("password is empty");
+                return false;
+            }
+            return true;
+        }
+
+        // gọi api login
+        function handleFormSignIn(userObj) {
+            $.ajax({
+                url: loginURL,
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(userObj),
+                success: function(responseObject) {
+                    console.log(responseObject)
+                    responseHandler(responseObject);
+                    debugger;
+                    $.ajax({
+                        url: urlInfo,
+                        method: "GET",
+                        headers: headers,
+                        success: function(responseObject) {
+                            console.log(responseObject);
+                            displayUser(responseObject);
+                        },
+                        error: function(xhr) {
+                            console.log(xhr);
+                            // Khi token hết hạn, AJAX sẽ trả về lỗi khi đó sẽ redirect về trang login để người dùng đăng nhập lại
+                            
+                        }
+                    });
+                },
+                error: function(xhr) {
+                // Lấy error message
+                var errorMessage = xhr.responseJSON.message;
+                    console.log(xhr)
+                }
+            });
+        }
+
+        //Xử lý object trả về khi login thành công
+        function responseHandler(data) {
+            //Lưu token vào cookie trong 1 ngày
+            setCookie("token", data.accessToken, 1);
+
+            $("#loginModal").modal('hide');
+        }
+
+        //Hàm get Cookie đã giới thiệu ở bài trước
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        //Hàm setCookie đã giới thiệu ở bài trước
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        // Hàm xử lý click menu dropdown
+        function myFunction() {
+            $("#myDropdown").toggleClass("show");
+        }
+        // Hàm xử lý khi đăng nhập thành công
+        function handleSigninSuccess() {
+
+        }
+    })
+</script>
+</html>
