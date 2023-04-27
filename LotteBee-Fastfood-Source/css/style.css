@@ -1038,6 +1038,35 @@ a:focus {
   font-weight: bold;
   color: yellow;
 }
+#cart {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#cart ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#cart li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-to-cart {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
 
 
 /*# sourceMappingURL=style.css.map */

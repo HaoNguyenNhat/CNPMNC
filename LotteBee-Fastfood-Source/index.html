@@ -30,6 +30,8 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
+  <script defer src="js/main.js"></script>
+
 </head>
 
 <body>
@@ -65,11 +67,11 @@
               </li> 
             </ul>
             <div class="user_option">
-              <a href="" class="user_link">
+              <a href="account.html" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a>
                 
-              <a href="#" class="cart">
+              <a href="book.html" class="cart">
                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 <i class="count-cart" aria-hidden="true">10</i>
               </a>
@@ -239,7 +241,7 @@
                 <div class="img-box">
                   <img src="images/menu1.png" alt="">
                 </div>
-                <div class="detail-box">
+                <div class="detail-box product">
                   <h5>
                     Bánh mì kẹp thịt
                   </h5>
@@ -250,7 +252,8 @@
                     <h6 class="price">
                       25.000 VNĐ
                     </h6>
-                    <a href="" class="add-to-cart fa fa-shopping-cart"></a>
+                    <!-- <a href="" class="add-to-cart fa fa-shopping-cart" data-name="Product Name" data-price="100"></a> -->
+                    <button class="add-to-cart" data-name="Product Name" data-price="100">Add to Cart</button>
                   </div>
                 </div>
               </div>
