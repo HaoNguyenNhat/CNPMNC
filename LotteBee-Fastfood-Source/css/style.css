@@ -1038,10 +1038,7 @@ a:focus {
   font-weight: bold;
   color: yellow;
 }
-#cart {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
+
 
 #cart ul {
   list-style-type: none;
