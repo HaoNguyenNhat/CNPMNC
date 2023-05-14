@@ -43,6 +43,7 @@ function getSession() {
  $(document).ready(function(){
   changeTotal();
   $(".qt-plus").click(function(){
+    console.log(this.id);
     $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
     
     $(this).parent().children(".full-price").addClass("added");
@@ -82,6 +83,7 @@ function getSession() {
     
     var el = $(this);
     window.setTimeout(function(){el.parent().children(".full-price").removeClass("minused"); changeVal(el);}, 150);
+
   });
   
   window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
@@ -108,7 +110,7 @@ for(var i = 0; i < getGioHang.length; i ++) {
                         <footer class="content">
                             <span id="${i}" class="qt-minus">-</span>
                             <span class="qt">1</span>
-                            <span class="qt-plus">+</span>
+                            <span class="qt-plus" id="${getGioHang[i].id}">+</span>
                             <h2 class="full-price">
                                 ${getGioHang[i].buyPrice}vnd
                             </h2>

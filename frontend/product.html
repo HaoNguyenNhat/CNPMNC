@@ -269,6 +269,7 @@
                       <th>ID</th>
                       <th>Ảnh</th>
                       <th>Tên</th>
+                      <th>Mã</th>
                       <th>Mô tả</th>
                       <th>Giá</th>
                       <th>Loại sản phẩm</th>
@@ -296,9 +297,18 @@
                                       <label for="input-insert-ten">Tên sản phẩm</label>
                                   </div>
                                   <div class="col-sm-8">
-                                      <input type="text" id="input-insert-ten" name="firstname" placeholder="Nhập tên sản phẩm.." class="form-control">
+                                      <input type="text" id="input-insert-ten" name="" placeholder="Nhập tên sản phẩm.." class="form-control">
                                   </div>
-                              </div>                    
+                              </div>     
+                              
+                              <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-insert-ma">Mã sản phẩm</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-insert-ma" name="" placeholder="Nhập mã sản phẩm.." class="form-control">
+                                </div>
+                            </div> 
                               
                               <div class="row form-group">
                                   <div class="col-sm-4">
@@ -349,11 +359,11 @@
 
       <!-- update User modal -->
       <div>
-          <div id="update-user" class="modal fade" tabindex="-1">
+          <div id="update-product" class="modal fade" tabindex="-1">
               <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header bg-primary">
-                          <h5 class="modal-title" id="h5-modal-title">CẬP NHẬT NGƯỜI DÙNG</h5>
+                          <h5 class="modal-title" id="h5-modal-title">CẬP NHẬT SẢN PHẨM</h5>
                           <button class="close" data-dismiss="modal">&times;</button>
                       </div>
 
@@ -370,19 +380,10 @@
 
                           <div class="row form-group">
                               <div class="col-sm-4">
-                                  <label for="input-update-ho">Họ</label>
+                                  <label for="input-update-ma">Mã</label>
                               </div>
                               <div class="col-sm-8">
-                                  <input id="input-update-ho" class="form-control" placeholder="Nhập họ...">
-                              </div>
-                          </div>
-
-                          <div class="row form-group">
-                              <div class="col-sm-4">
-                                  <label for="input-update-email">Email</label>
-                              </div>
-                              <div class="col-sm-8">
-                                  <input id="input-update-email" class="form-control" placeholder="Nhập email...">
+                                  <input id="input-update-ma" class="form-control" placeholder="Nhập mã...">
                               </div>
                           </div>
                           
@@ -397,38 +398,28 @@
 
                           <div class="row form-group">
                             <div class="col-sm-4">
-                                <label for="input-update-sdt">Số điện thoại</label>
+                                <label for="input-update-description">Mô tả</label>
                             </div>
                             <div class="col-sm-8">
-                                <input id="input-update-sdt" class="form-control" placeholder="Nhập số điện thoại...">
-                            </div>
-                          </div>
-                        
-                          <div class="row form-group">
-                            <div class="col-sm-4">
-                                <label for="input-update-diachi">Địa chỉ</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <input id="input-update-diachi" class="form-control" placeholder="Nhập địa chỉ...">
+                                <textarea id="input-update-description" class="form-control" placeholder="Nhập mô tả..."></textarea>
                             </div>
                           </div>
 
                           <div class="row form-group">
                             <div class="col-sm-4">
-                                <label for="input-update-username">Tên đăng nhập</label>
+                                <label for="input-update-gia">Giá sản phẩm</label>
                             </div>
                             <div class="col-sm-8">
-                                <input id="input-update-username" class="form-control" placeholder="Nhập tên đăng nhập...">
+                                <input id="input-update-gia" class="form-control" placeholder="Nhập giá sản phẩm...">
                             </div>
                           </div>
                         </div>
                       </form>
-                      </div>
-
                       <div class="modal-footer">
-                          <button class="btn btn-secondary" id="btn-update-cancel" data-dismiss="modal">Cancel</button>
-                          <button class="btn btn-primary" id="btn-update-user">Cập nhật</button>
+                        <button class="btn btn-secondary" id="btn-update-cancel" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" id="btn-update-product">Cập nhật</button>
                       </div>
+                    </div>
                   </div>
               </div>
           </div>

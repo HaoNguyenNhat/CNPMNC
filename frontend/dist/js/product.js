@@ -2,11 +2,14 @@
 // Biến lưu mảng sản phẩm
 var gProductArray = [];
 var gProductLineArr = [];
+var dataToUpdate = [];
+
 // Biến mảng hằng số chứa danh sách tên các thuộc tính
 const gPRODUCT_COLS = [
     "id",
     "photo1",
     "productName",
+    "productCode",
     "productDescription",
     "buyPrice",
     "productLine.productLine",
@@ -18,10 +21,11 @@ const gPRODUCT_COLS = [
 const gID_COL = 0;
 const gANH_COL = 1;
 const gTEN_SAN_PHAM_COL = 2;
-const gMO_TA_COL = 3;
-const gGIA_COL = 4;
-const gLOAI_SAN_PHAM_COL = 5;
-const gACTION_COL = 6;
+const gMA_SAN_PHAM_COL = 3;
+const gMO_TA_COL = 4;
+const gGIA_COL = 5;
+const gLOAI_SAN_PHAM_COL = 6;
+const gACTION_COL = 7;
 
 // Khai báo DataTable & mapping columns
 var gUserTable = $("#user-table").DataTable({
@@ -29,6 +33,7 @@ var gUserTable = $("#user-table").DataTable({
         { data: gPRODUCT_COLS[gID_COL] }, 
         { data: gPRODUCT_COLS[gANH_COL] }, 
         { data: gPRODUCT_COLS[gTEN_SAN_PHAM_COL] }, 
+        { data: gPRODUCT_COLS[gMA_SAN_PHAM_COL] }, 
         { data: gPRODUCT_COLS[gMO_TA_COL] }, 
         { data: gPRODUCT_COLS[gGIA_COL] }, 
         { data: gPRODUCT_COLS[gLOAI_SAN_PHAM_COL] }, 
@@ -53,10 +58,24 @@ var gUserTable = $("#user-table").DataTable({
 $("#btn-create-product").on("click", function() {
     onBtnAddProduct();
 })
+
 $("#btn-insert-modal-product").on("click", function() {
     onBtnAddModal();
 })
+// hàm xử lý thêm sản phẩm
+function onBtnAddProduct() {
+    $("#insert-new-product").modal("show");
+}
 
+//gán sự kiện Update - Sửa 1 user
+$("#user-table").on("click", ".edit-user",function() {
+    onBtnEditUserClick(this);
+});
+
+// nút sửa sản phẩm
+$("#btn-update-product").on("click", function() {
+    onBtnEditProduct();
+})
 // Gọi Api lấy toàn bộ dữ liệu
 function callApiGetAllProduct() {
     $.ajax({
@@ -112,15 +131,14 @@ function loadDataToSelectProductLine() {
     }
     
 }
-function onBtnAddProduct() {
-    $("#insert-new-product").modal("show");
-    
-}
+
+
 
 function onBtnAddModal() {
     // lấy data từ form modal
     var dataInfo = {
         productName: "",
+        productCode: "",
         productDescription:"",
         photo1: "",
         buyPrice: "",
@@ -129,7 +147,7 @@ function onBtnAddModal() {
         productLineid: ""
     };
     getDataFromModal(dataInfo, productLineid);
-    console.log(dataInfo.photo1);
+    console.log(dataInfo);
     var isValid = validateModalInsert(dataInfo);
     if(isValid) {
         handleAddClick(dataInfo, productLineid);
@@ -137,12 +155,15 @@ function onBtnAddModal() {
 }
 function getDataFromModal(dataInfo, productLineid) {
     var productName = $("#input-insert-ten").val();
-    var photo = $("#input-insert-anh")[0].files[0].name;
+    var productCode = $("#input-insert-ma").val();
+    var photo = $("#input-insert-anh").val().replace(/C:\\fakepath\\/i, '');
     var des = $("#input-insert-description").val();
     var gia = $("#input-insert-gia").val();
     var productLine = $("#select-insert-productLine").val();
 
+
     dataInfo.productName = productName;
+    dataInfo.productCode = productCode;
     dataInfo.productDescription = des;
     dataInfo.photo1 = photo;
     dataInfo.buyPrice = gia;
@@ -154,16 +175,20 @@ function validateModalInsert(dataInfo) {
         alert("Bạn cần nhập tên sản phẩm");
         return false;
     }
-    if(dataInfo.description == "") {
-        alert("Bạn cần nhập mô tả");
+    if(dataInfo.productCode == "") {
+        alert("Bạn cần nhập mã sản phẩm");
         return false;
     }
-    if(dataInfo.photo == "") {
+    if(dataInfo.photo1 == "") {
         alert("Bạn cần chọn ảnh");
         return false;
     }
+    if(dataInfo.productDescription == "") {
+        alert("Bạn cần nhập mô tả");
+        return false;
+    }
     if(dataInfo.buyPrice == "") {
-        alert("Bạn cần nhập gái tiền");
+        alert("Bạn cần nhập giá tiền");
         return false;
     }
     return true;
@@ -187,6 +212,52 @@ function handleAddClick(dataInfo, productLineid) {
     })
 }
 
-function callApiCreateProduct() {
-    
+function onBtnEditUserClick(button) {
+    var data = gUserTable.row($(button).parents('tr')).data();
+    dataToUpdate = data;
+    console.log(data);
+    showInfoProduct(data);
+    $("#update-product").modal("show");
+}
+
+function showInfoProduct(data) {
+    $("#input-update-ten").val(data.productName);
+    $("#input-update-ma").val(data.productCode);
+    $("#input-update-description").val(data.productDescription);
+    $("#input-update-gia").val(data.buyPrice);
+}
+
+function onBtnEditProduct() {
+    var dataProduct = {
+        productName: "",
+        productCode: "",
+        buyPrice: 0,
+        photo1: dataToUpdate.photo1,
+        productDescription: ""
+    }
+    getDataProduct(dataProduct);
+    $("#input-update-anh").on("change", function() {
+        dataProduct.photo1 = $("#input-update-anh").val().replace(/C:\\fakepath\\/i, '');
+    })
+    console.log(dataProduct);
+    // $.ajax({
+    //     url: "http://localhost:8080/fastfood/api/noauth/product/" + dataToUpdate.id,
+    //     type: "PUT",
+    //     contentType: "application/json;charset=UTF-8",
+    //     data: JSON.stringify(dataProduct),
+    //     success: function(res) {
+    //         alert("Sửa sản phẩm thành công");
+    //         location.reload();
+    //     },
+    //     error: function(err) {
+    //         alert(err);
+    //     }
+    // })
+}
+
+function getDataProduct(data) {
+    data.productName = $("#input-update-ten").val();
+    data.productCode = $("#input-update-ma").val();
+    data.buyPrice = $("#input-update-gia").val();
+    data.productDescription = $("#input-update-description").val();
 }

@@ -1,20 +1,14 @@
 package com.devcamp.springjwt.models;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,15 +41,6 @@ public class Product {
     @Column(name = "product_description")
     private String productDescription;
 
-    @Column(name = "product_scale")
-    private String productScale;
-
-    @Column(name = "product_vendor")
-    private String productVendor;
-
-    @Column(name = "quantity_stock")
-    private Integer quantityInStock;
-
     @Column(name = "buy_price")
     private Long buyPrice;
 
@@ -63,8 +48,7 @@ public class Product {
     @JoinColumn(name = "product_line_id")
     private ProductLine productLine;
 
-    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<OrderDetail> OrderDetail;
-
+    @ManyToOne
+    @JoinColumn(name = "orders_id")
+    private Order order;
 }

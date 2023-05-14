@@ -8,6 +8,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users", 
     uniqueConstraints = { 
@@ -32,11 +34,30 @@ public class User {
   @Size(max = 120)
   private String password;
 
+  @Column(name = "addres")
+  private String address;
+
+  @Column(name = "city")
+  private String city;
+
+  @Column(name = "name_card")
+  private String nameCard;
+  
+  @Column(name = "number_card")
+  private String numberCard;
+
+  @Column(name = "expiry_date")
+  private String expiryDate;
+
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles", 
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonIgnore
+  private Set<Order> orders;
 
   public User() {
   }

@@ -270,3 +270,7 @@ function redirectToLogin() {
   setCookie("token", "", 1);
   window.location.href = "signin.html";
 }
+
+function countElementOfCart(cartArr) {
+  
+}

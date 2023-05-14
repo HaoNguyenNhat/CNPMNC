@@ -65,13 +65,11 @@ public class ProductService {
                 Product newProduct = new Product();
 
                 newProduct.setProductLine(productLineOptional.get());
+                newProduct.setProductName(product.getProductName());
                 newProduct.setProductCode(product.getProductCode());
                 newProduct.setBuyPrice(product.getBuyPrice());
                 newProduct.setPhoto1(product.getPhoto1());
                 newProduct.setProductDescription(product.getProductDescription());
-                newProduct.setProductScale(product.getProductScale());
-                newProduct.setProductVendor(product.getProductVendor());
-                newProduct.setQuantityInStock(product.getQuantityInStock());
 
                 return new ResponseEntity<>(productRepository.save(newProduct), HttpStatus.CREATED);
             } else {
@@ -82,4 +80,26 @@ public class ProductService {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    // sửa sản phẩm 
+    public ResponseEntity<Object> updateProduct(Product product, Integer id) {
+        try {
+            Optional<Product> productOp = productRepository.findById(id);
+            if(productOp.isPresent()) {
+                Product newProduct = productOp.get();
+                newProduct.setProductCode(product.getProductCode());
+                newProduct.setProductName(product.getProductName());
+                newProduct.setBuyPrice(product.getBuyPrice());
+                newProduct.setPhoto1(product.getPhoto1());
+                newProduct.setProductDescription(product.getProductDescription());
+                return new ResponseEntity<Object>(productRepository.save(newProduct), HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    } 
 }
