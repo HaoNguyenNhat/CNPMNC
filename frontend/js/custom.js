@@ -211,9 +211,10 @@ function onNameProductClick(btnNameProduct) {
 
 // hàm xử lý khi bấm bút add to cart
 function handleBtnAddToCart(data, button) {
-  console.log(data);
-  giohang.push(data);
-  sessionStorage.setItem("giohang", JSON.stringify(giohang));
+  var gh = sessionStorage.getItem("giohang");
+  var getGioHang = JSON.parse(gh);
+  getGioHang.push(data);
+  sessionStorage.setItem("giohang", JSON.stringify(getGioHang));
 
   var gh = sessionStorage.getItem("giohang");
   var getGioHang = JSON.parse(gh);

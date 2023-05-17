@@ -73,16 +73,13 @@ h1, h2 {
 a,
 a:hover,
 a:focus {
-  color: red;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: red;
+  color: initial;
 }
-
-
 
 .btn,
 .btn:focus {
@@ -1225,7 +1222,7 @@ label {
 }
 
 a {
-  color: #000000;
+  color: #ebeff1;
   text-decoration: none;
 }
 
